@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { MockEtzhayyim } from "@etzhayyim/sdk-mock";
+import { describe, it, beforeEach } from "node:test";
+import { expect } from "./expect.mjs";
+import { LocalStore } from "../dist/local-store.js";
 import {
   submitItem,
   getItem,
@@ -9,13 +10,13 @@ import {
   expire,
   requestRitual,
   ritualize,
-} from "../src/index.js";
+} from "../dist/domain/index.js";
 
 describe("otakiage kotoba", () => {
   let e: any;
 
   beforeEach(() => {
-    e = new MockEtzhayyim({ did: "did:web:otakiage.itonami.cloud" });
+    e = new LocalStore({ did: "did:web:otakiage.itonami.cloud" });
   });
 
   describe("submitItem", () => {

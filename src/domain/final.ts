@@ -11,7 +11,7 @@
  * Closes otakiage at canonical 10/10 + 3 transition helpers = 13 total.
  */
 
-import type { Etzhayyim } from "@etzhayyim/sdk";
+import type { LocalStore } from "../local-store.js";
 import { ritualize } from "./transitions.js";
 import {
   idSlug,
@@ -65,7 +65,7 @@ function agentChatRkey(chatId: string): string {
 // ─── issueCertificate ───────────────────────────────────────────────
 
 export async function issueCertificate(
-  e: Etzhayyim,
+  e: LocalStore,
   input: IssueCertificateInput
 ): Promise<IssueCertificateOutput> {
   if (!input.certId || !input.itemId || !input.issuerDid) {
@@ -122,7 +122,7 @@ export async function issueCertificate(
 // ─── anchorCertificate ──────────────────────────────────────────────
 
 export async function anchorCertificate(
-  e: Etzhayyim,
+  e: LocalStore,
   input: AnchorCertificateInput
 ): Promise<AnchorCertificateOutput> {
   if (!input.certId || !input.anchorTxHash || !input.anchorChain) {
@@ -168,7 +168,7 @@ export async function anchorCertificate(
 // ─── scheduleMatsuri ────────────────────────────────────────────────
 
 export async function scheduleMatsuri(
-  e: Etzhayyim,
+  e: LocalStore,
   input: ScheduleMatsuriInput
 ): Promise<ScheduleMatsuriOutput> {
   if (!input.matsuriId || !input.scheduledAt) {
@@ -215,7 +215,7 @@ export async function scheduleMatsuri(
 // ─── coverage ───────────────────────────────────────────────────────
 
 export async function coverage(
-  e: Etzhayyim,
+  e: LocalStore,
   input: CoverageInput = {}
 ): Promise<CoverageOutput> {
   const maxScan = Math.min(input.maxScan ?? DEFAULT_MAX_SCAN, DEFAULT_MAX_SCAN);
@@ -265,7 +265,7 @@ export async function coverage(
 // ─── agentChat ──────────────────────────────────────────────────────
 
 export async function agentChat(
-  e: Etzhayyim,
+  e: LocalStore,
   input: AgentChatInput
 ): Promise<AgentChatOutput> {
   if (!input.chatId || !input.userDid || !input.userMessage) {
