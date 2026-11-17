@@ -14,7 +14,7 @@
  * follow-up slices (separate functions per transition for clarity).
  */
 
-import type { Etzhayyim } from "@etzhayyim/sdk";
+import type { LocalStore } from "../local-store.js";
 import {
   itemDid,
   itemRkey,
@@ -33,7 +33,7 @@ import {
 const ITEM_COLLECTION = "cloud.itonami.otakiage.item";
 
 export async function submitItem(
-  e: Etzhayyim,
+  e: LocalStore,
   input: SubmitItemInput
 ): Promise<SubmitItemOutput> {
   if (!input.itemId || !input.ownerDid || !input.title || !input.mode) {
@@ -104,7 +104,7 @@ export async function submitItem(
 }
 
 export async function getItem(
-  e: Etzhayyim,
+  e: LocalStore,
   input: GetItemInput
 ): Promise<GetItemOutput> {
   if (!input.itemId) return { error: "missingItemId" };
@@ -121,7 +121,7 @@ export async function getItem(
 }
 
 export async function listItems(
-  e: Etzhayyim,
+  e: LocalStore,
   input: ListItemsInput = {}
 ): Promise<ListItemsOutput> {
   const limit = Math.min(input.limit ?? 50, 100);

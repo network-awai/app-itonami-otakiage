@@ -17,7 +17,7 @@
  * (e.g. ritualize on handed_over) return rejected with reason.
  */
 
-import type { Etzhayyim } from "@etzhayyim/sdk";
+import type { LocalStore } from "../local-store.js";
 import {
   itemRkey,
   OTAKIAGE_DID_PREFIX,
@@ -50,7 +50,7 @@ function ritualRequestRkey(itemId: string): string {
 }
 
 async function loadItem(
-  e: Etzhayyim,
+  e: LocalStore,
   itemId: string
 ): Promise<{ record: ItemRecord; uri: string } | undefined> {
   const resp = await e
@@ -67,7 +67,7 @@ async function loadItem(
 // ─── requestReuse ───────────────────────────────────────────────────
 
 export async function requestReuse(
-  e: Etzhayyim,
+  e: LocalStore,
   input: RequestReuseInput
 ): Promise<RequestReuseOutput> {
   if (!input.itemId || !input.requesterDid) {
@@ -121,7 +121,7 @@ export async function requestReuse(
 // ─── handover ───────────────────────────────────────────────────────
 
 export async function handover(
-  e: Etzhayyim,
+  e: LocalStore,
   input: HandoverInput
 ): Promise<HandoverOutput> {
   if (!input.itemId || !input.recipientDid) {
@@ -158,7 +158,7 @@ export async function handover(
 // ─── expire ─────────────────────────────────────────────────────────
 
 export async function expire(
-  e: Etzhayyim,
+  e: LocalStore,
   input: ExpireInput
 ): Promise<ExpireOutput> {
   if (!input.itemId) return { status: "rejected", error: "missingItemId" };
@@ -194,7 +194,7 @@ export async function expire(
 // ─── requestRitual ──────────────────────────────────────────────────
 
 export async function requestRitual(
-  e: Etzhayyim,
+  e: LocalStore,
   input: RequestRitualInput
 ): Promise<RequestRitualOutput> {
   if (!input.itemId) return { status: "rejected", error: "missingItemId" };
@@ -265,7 +265,7 @@ export async function requestRitual(
 // ─── ritualize ──────────────────────────────────────────────────────
 
 export async function ritualize(
-  e: Etzhayyim,
+  e: LocalStore,
   input: RitualizeInput
 ): Promise<RitualizeOutput> {
   if (!input.itemId || !input.certificateUri) {

@@ -1,3 +1,5 @@
+> **2026-11-17 (AWAI-3079):** この app は Tauri v3 の local app に変わりました。現在の構成とコマンドは [README.md](README.md) を見てください。Cloudflare Worker・XRPC・PDS・deploy に関する以下の記述は、以前の設計の記録で、今のコードとは一致しません。
+
 # otakiage.itonami.cloud
 
 **Reuse & Ritual Platform** — 物の reuse (ローカル譲渡) と ritual (お焚き上げ) を 1 actor 内の単一 state machine で扱う。
