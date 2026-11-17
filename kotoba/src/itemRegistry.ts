@@ -30,7 +30,7 @@ import {
   type SubmitItemOutput,
 } from "./types.js";
 
-const ITEM_COLLECTION = "com.etzhayyim.otakiage.item";
+const ITEM_COLLECTION = "cloud.itonami.otakiage.item";
 
 export async function submitItem(
   e: Etzhayyim,

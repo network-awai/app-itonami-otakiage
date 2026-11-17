@@ -15,7 +15,7 @@ describe("otakiage kotoba", () => {
   let e: any;
 
   beforeEach(() => {
-    e = new MockEtzhayyim({ did: "did:web:otakiage.etzhayyim.com" });
+    e = new MockEtzhayyim({ did: "did:web:otakiage.itonami.cloud" });
   });
 
   describe("submitItem", () => {
@@ -336,7 +336,7 @@ describe("otakiage kotoba", () => {
       const result = await ritualize(e, {
         itemId: "item-ritualize1",
         certificateUri:
-          "at://did:web:otakiage.etzhayyim.com/com.etzhayyim.otakiage.certificate/cert-001",
+          "at://did:web:otakiage.itonami.cloud/cloud.itonami.otakiage.certificate/cert-001",
       });
 
       expect(result.status).toBe("ritualized");
@@ -348,7 +348,7 @@ describe("otakiage kotoba", () => {
     it("rejects ritualize for non-existent item", async () => {
       const result = await ritualize(e, {
         itemId: "item-notfound",
-        certificateUri: "at://did:web:otakiage.etzhayyim.com/cert/cert-001",
+        certificateUri: "at://did:web:otakiage.itonami.cloud/cert/cert-001",
       });
 
       expect(result.status).toBe("rejected");
