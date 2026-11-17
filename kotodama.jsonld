@@ -1,50 +1,50 @@
 {
-  "@context": "https://etzhayyim.com/ns/kotodama/v1",
+  "@context": "https://itonami.cloud/ns/kotodama/v1",
   "name": "otakiage",
   "performerType": "service",
   "nanoid": "0t4k1ag3",
   "description": "Reuse & Ritual Platform — 物の reuse と お焚き上げ を 1 actor で扱う",
-  "primaryDid": "did:web:otakiage.etzhayyim.com",
-  "domain": "otakiage.etzhayyim.com",
+  "primaryDid": "did:web:otakiage.itonami.cloud",
+  "domain": "otakiage.itonami.cloud",
   "runtimeType": "kotodama-zeebe",
   "executionTier": "T2",
   "subDids": [
     {
       "path": "reuse",
-      "did": "did:web:otakiage.etzhayyim.com:reuse",
+      "did": "did:web:otakiage.itonami.cloud:reuse",
       "role": "近接マッチ broker"
     },
     {
       "path": "ritual",
-      "did": "did:web:otakiage.etzhayyim.com:ritual",
+      "did": "did:web:otakiage.itonami.cloud:ritual",
       "role": "司式 actor / certificate issuer"
     },
     {
       "path": "matsuri",
-      "did": "did:web:otakiage.etzhayyim.com:matsuri",
+      "did": "did:web:otakiage.itonami.cloud:matsuri",
       "role": "季節祭 organizer"
     }
   ],
   "profile": {
     "displayName": "otakiage — 物の供養と再生",
-    "description": "etzhayyim 主催。物の reuse (ローカル譲渡) と ritual (お焚き上げ) を 1 つのライフサイクルで扱う AI Agent platform。絵本 / ぬいぐるみ / おもちゃ / 家具 / 大型家電。",
+    "description": "itonami 主催。物の reuse (ローカル譲渡) と ritual (お焚き上げ) を 1 つのライフサイクルで扱う AI Agent platform。絵本 / ぬいぐるみ / おもちゃ / 家具 / 大型家電。",
     "avatar": "✨",
     "category": "religious",
     "isBot": true,
     "agentType": "autonomous",
-    "operator": "etzhayyim",
+    "operator": "itonami",
     "contract": "ADR-2605081700",
     "country": "jpn"
   },
   "triggers": {
     "subscribeRepos": {
       "collections": [
-        "com.etzhayyim.otakiage.item",
-        "com.etzhayyim.otakiage.reuseRequest",
-        "com.etzhayyim.otakiage.handover",
-        "com.etzhayyim.otakiage.ritual",
-        "com.etzhayyim.otakiage.matsuri",
-        "com.etzhayyim.otakiage.certificate"
+        "cloud.itonami.otakiage.item",
+        "cloud.itonami.otakiage.reuseRequest",
+        "cloud.itonami.otakiage.handover",
+        "cloud.itonami.otakiage.ritual",
+        "cloud.itonami.otakiage.matsuri",
+        "cloud.itonami.otakiage.certificate"
       ]
     }
   },
@@ -56,19 +56,19 @@
   },
   "lexicons": {
     "procedures": [
-      "com.etzhayyim.otakiage.submitItem",
-      "com.etzhayyim.otakiage.requestReuse",
-      "com.etzhayyim.otakiage.confirmHandover",
-      "com.etzhayyim.otakiage.requestRitual",
-      "com.etzhayyim.otakiage.scheduleMatsuri",
-      "com.etzhayyim.otakiage.issueCertificate",
-      "com.etzhayyim.otakiage.agentChat",
-      "com.etzhayyim.otakiage.anchorCertificate"
+      "cloud.itonami.otakiage.submitItem",
+      "cloud.itonami.otakiage.requestReuse",
+      "cloud.itonami.otakiage.confirmHandover",
+      "cloud.itonami.otakiage.requestRitual",
+      "cloud.itonami.otakiage.scheduleMatsuri",
+      "cloud.itonami.otakiage.issueCertificate",
+      "cloud.itonami.otakiage.agentChat",
+      "cloud.itonami.otakiage.anchorCertificate"
     ],
     "queries": [
-      "com.etzhayyim.otakiage.listItems",
-      "com.etzhayyim.otakiage.getItem",
-      "com.etzhayyim.otakiage.coverage"
+      "cloud.itonami.otakiage.listItems",
+      "cloud.itonami.otakiage.getItem",
+      "cloud.itonami.otakiage.coverage"
     ]
   },
   "bpmn": [

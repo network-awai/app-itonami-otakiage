@@ -1,8 +1,8 @@
 import { createAuthedEtzhayyim, extractBearerToken } from "@etzhayyim/sdk-auth";
-import * as otakiageRwFree from "@etzhayyim/otakiage-kotoba";
+import * as otakiageRwFree from "@itonami/otakiage-kotoba";
 interface Env { ACTOR_DID: string; PDS_URL: string; L2_RPC_URL: string; PDS_ACCESS_JWT?: string; PDS_REFRESH_JWT?: string; }
 type Handler = (e: Etzhayyim, input: unknown) => Promise<unknown>;
-const NSID_BASE = "com.etzhayyim.otakiage";
+const NSID_BASE = "cloud.itonami.otakiage";
 interface RouteConfig { method: "POST" | "GET"; handler: Handler; }
 const routes: Record<string, RouteConfig> = {
   [`${NSID_BASE}.submitItem`]: { method: "POST", handler: (e, input) => otakiageRwFree.submitItem(e, input as any) },

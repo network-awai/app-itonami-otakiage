@@ -1,4 +1,4 @@
-# otakiage.etzhayyim.com
+# otakiage.itonami.cloud
 
 **Reuse & Ritual Platform** — 物の reuse (ローカル譲渡) と ritual (お焚き上げ) を 1 actor 内の単一 state machine で扱う。
 
@@ -15,10 +15,10 @@ T2 actor (ADR-0036 + ADR-0056 + ADR-2604282300)
 
 | DID | 役割 |
 |---|---|
-| `did:web:otakiage.etzhayyim.com` | controller (primary) |
-| `did:web:otakiage.etzhayyim.com:reuse` | 近接マッチ broker (handover author) |
-| `did:web:otakiage.etzhayyim.com:ritual` | 司式 actor (certificate issuer) |
-| `did:web:otakiage.etzhayyim.com:matsuri` | 季節祭 organizer |
+| `did:web:otakiage.itonami.cloud` | controller (primary) |
+| `did:web:otakiage.itonami.cloud:reuse` | 近接マッチ broker (handover author) |
+| `did:web:otakiage.itonami.cloud:ritual` | 司式 actor (certificate issuer) |
+| `did:web:otakiage.itonami.cloud:matsuri` | 季節祭 organizer |
 
 ## Item Lifecycle (state machine)
 
@@ -66,7 +66,7 @@ Migrations:
 
 BPMN files: `etzhayyim-root/00-contracts/bpmn/com/etzhayyim/otakiage/`
 
-## Lexicons (11, NSID `com.etzhayyim.otakiage.*`)
+## Lexicons (11, NSID `cloud.itonami.otakiage.*`)
 
 | NSID | type | scope |
 |---|---|---|
@@ -82,11 +82,11 @@ BPMN files: `etzhayyim-root/00-contracts/bpmn/com/etzhayyim/otakiage/`
 | `getItem` | query | single item with related URIs |
 | `coverage` | query | mv_otakiage_items_by_state |
 
-Lexicon files: `00-contracts/lexicons/com/etzhayyim/apps/otakiage/`
+Lexicon files: `00-contracts/lexicons/cloud/itonami/apps/otakiage/`
 
 ## Phase 2 — Conversational LangGraph Agent (2026-05-08)
 
-`com.etzhayyim.otakiage.agentChat` — kotodama persona、3 LLM call の StateGraph。
+`cloud.itonami.otakiage.agentChat` — kotodama persona、3 LLM call の StateGraph。
 
 **Graph** `otakiage.agent.chat.v1` (`kotodama/agents/otakiage_agent.py`):
 
@@ -125,7 +125,7 @@ START → load_history → parse_intent (LLM #1)
 
 ## Phase 2b1 — ERC725 Certificate Anchor (2026-05-08)
 
-供養証跡 (certificate) を ERC725 anchor token として on-chain に固定する経路。**Phase 2b1 = state tracking のみ** (queue / sweep stub finalize)、Phase 2b2 で ethers/viem 経由の実 on-chain submission を実装。etzhayyim の blockchain 登記の延長として、各供養に対して改ざん耐性のある永続証跡を持たせる。
+供養証跡 (certificate) を ERC725 anchor token として on-chain に固定する経路。**Phase 2b1 = state tracking のみ** (queue / sweep stub finalize)、Phase 2b2 で ethers/viem 経由の実 on-chain submission を実装。itonami の blockchain 登記の延長として、各供養に対して改ざん耐性のある永続証跡を持たせる。
 
 ### State machine (`anchor_status`)
 
@@ -162,7 +162,7 @@ issueCertificate → (auto-queue, non-fatal)
 
 | process_id | trigger | task chain |
 |---|---|---|
-| `otakiage_anchor_certificate` | XRPC `com.etzhayyim.otakiage.anchorCertificate` | `otakiage.certificate.anchor` (queue) → audit |
+| `otakiage_anchor_certificate` | XRPC `cloud.itonami.otakiage.anchorCertificate` | `otakiage.certificate.anchor` (queue) → audit |
 | `otakiage_certificate_anchor_sweep` | R/PT1H | `otakiage.certificate.anchorSweep` (queued→submitted→anchored) → audit |
 
 ### Primitives
@@ -224,15 +224,15 @@ ritualized 時に発行:
 
 ```json
 {
-  "$type": "com.etzhayyim.otakiage.certificate",
-  "ritualUri": "at://did:web:otakiage.etzhayyim.com:ritual/.../...",
+  "$type": "cloud.itonami.otakiage.certificate",
+  "ritualUri": "at://did:web:otakiage.itonami.cloud:ritual/.../...",
   "itemUris": ["at://...", ...],
-  "donorDids": ["did:web:alice.etzhayyim.com", ...],
+  "donorDids": ["did:web:alice.itonami.cloud", ...],
   "issuedAt": "2026-04-15T10:00:00Z",
   "issuer": {
-    "name": "etzhayyim",
+    "name": "itonami",
     "kind": "religious-corporation",
-    "did": "did:web:otakiage.etzhayyim.com:ritual"
+    "did": "did:web:otakiage.itonami.cloud:ritual"
   },
   "displayText": "ぬいぐるみ 3 体 / 絵本 12 冊 を 春の人形供養祭 にて謹んでお焚き上げいたしました",
   "categoryBreakdown": {"nuigurumi": 3, "ehon": 12},
@@ -246,13 +246,13 @@ URI が永続 ID。Phase 2 で `anchorTokenId` に ERC725 anchor token を入れ
 ## Phase 2 / Phase 3 ロードマップ
 
 - **Phase 2**: ERC725 anchor token (Coinbase Smart Wallet 連携)、配送 actor 連携 (ヤマト集荷 API)、季節祭の Wan 2.2 動画生成 (供養祭 livestream highlight)、Svelte UI (登録/一覧/詳細)
-- **Phase 3**: 神社仏閣 actor 連携 (合同供養祭の実物理イベント連携)、寄付 actor `donate.etzhayyim.com` との 2-way bridge、Well-Becoming Spirit objective 上のメトリクス組込
+- **Phase 3**: 神社仏閣 actor 連携 (合同供養祭の実物理イベント連携)、寄付 actor `donate.itonami.cloud` との 2-way bridge、Well-Becoming Spirit objective 上のメトリクス組込
 
 ## Cross-deps
 
-- `maps.etzhayyim.com` — H3 res-5 cell ID 借用 (近接マッチ)
-- `fleamarket.etzhayyim.com` — 有償譲渡は別 actor (price=0 制約で otakiage は無償のみ)
-- `donate.etzhayyim.com` (Phase 3) — 寄付領収書 (税控除) は別 actor
+- `maps.itonami.cloud` — H3 res-5 cell ID 借用 (近接マッチ)
+- `fleamarket.itonami.cloud` — 有償譲渡は別 actor (price=0 制約で otakiage は無償のみ)
+- `donate.itonami.cloud` (Phase 3) — 寄付領収書 (税控除) は別 actor
 - 神社仏閣 actor (Phase 3) — 実物理ritual連携
 
 ## Operator manual run

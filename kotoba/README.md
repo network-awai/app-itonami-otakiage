@@ -1,6 +1,6 @@
 # otakiage kotoba
 
-Phase E Option B reference implementation of otakiage (reuse + ritual platform) on the etzhayyim substrate.
+Phase E Option B reference implementation of otakiage (reuse + ritual platform) on the itonami substrate.
 
 Per [ADR-2605081700](../../../90-docs/adr/2605081700-otakiage-reuse-ritual-platform.md) + [ADR-2605203000](../../../90-docs/adr/2605203000-kotoba-write-target-options.md), otakiage migrates from vendor's `createKyselyDb` pattern (RW direct write) to **Option B** — PDS XRPC writes via `@etzhayyim/sdk e.write()`.
 
@@ -36,32 +36,32 @@ Item modes:
 ## Authority-chain DIDs (per otakiage CLAUDE.md)
 
 ```
-did:web:otakiage.etzhayyim.com                          — controller
-did:web:otakiage.etzhayyim.com:reuse                    — handover broker
-did:web:otakiage.etzhayyim.com:ritual                   — ceremony actor
-did:web:otakiage.etzhayyim.com:matsuri                  — seasonal organizer
-did:web:otakiage.etzhayyim.com:item:{itemId-slug}       — this slice (Item)
-did:web:otakiage.etzhayyim.com:certificate:{certId-slug} — Certificate (future)
-did:web:otakiage.etzhayyim.com:matsuri:{matsuriId-slug}  — Matsuri (future)
+did:web:otakiage.itonami.cloud                          — controller
+did:web:otakiage.itonami.cloud:reuse                    — handover broker
+did:web:otakiage.itonami.cloud:ritual                   — ceremony actor
+did:web:otakiage.itonami.cloud:matsuri                  — seasonal organizer
+did:web:otakiage.itonami.cloud:item:{itemId-slug}       — this slice (Item)
+did:web:otakiage.itonami.cloud:certificate:{certId-slug} — Certificate (future)
+did:web:otakiage.itonami.cloud:matsuri:{matsuriId-slug}  — Matsuri (future)
 ```
 
 ## Pattern translation (Option B)
 
-| Vendor (`otakiage.etzhayyim.com`) | etzhayyim (this PR) |
+| Vendor (`otakiage.itonami.cloud`) | itonami (this PR) |
 |---|---|
-| `const db = createKyselyDb();` | `import type { Etzhayyim } from "@etzhayyim/sdk"` |
-| `db.insertInto("vertex_otakiage_item").values({...}).execute()` | `e.write({ collection: "com.etzhayyim.otakiage.item", record, rkey })` |
+| `const db = createKyselyDb();` | `import type { Itonami } from "@etzhayyim/sdk"` |
+| `db.insertInto("vertex_otakiage_item").values({...}).execute()` | `e.write({ collection: "cloud.itonami.otakiage.item", record, rkey })` |
 | `db.selectFrom("vertex_otakiage_item").where("id","=",i).execute()` | `e.read({ collection, rkey: \`item-${idSlug(i)}\` })` |
 
 ## Usage
 
 ```ts
-import { Etzhayyim } from "@etzhayyim/sdk";
-import { submitItem } from "@etzhayyim/otakiage-kotoba";
+import { Itonami } from "@etzhayyim/sdk";
+import { submitItem } from "@itonami/otakiage-kotoba";
 
-const e = new Etzhayyim({
-  did: "did:web:otakiage.etzhayyim.com",
-  pdsUrl: "https://pds.etzhayyim.com",
+const e = new Itonami({
+  did: "did:web:otakiage.itonami.cloud",
+  pdsUrl: "https://pds.itonami.cloud",
   l2RpcUrl: "https://mainnet.base.org",
 });
 

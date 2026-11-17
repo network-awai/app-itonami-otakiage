@@ -3,7 +3,7 @@
  *
  * Per ADR-2605081700 + ADR-2605203000 Option B (PDS XRPC).
  *
- * otakiage.etzhayyim.com = reuse + ritual platform. Single state machine
+ * otakiage.itonami.cloud = reuse + ritual platform. Single state machine
  * per item: reuse (local handover) → ritual (お焚き上げ ceremonial dispose).
  *
  * Item lifecycle (state machine):
@@ -16,16 +16,16 @@
  *                    └→ ritualized (terminal, certificate URI 発行)
  *
  * Identity hierarchy (per CLAUDE.md path-based DIDs):
- *   did:web:otakiage.etzhayyim.com                    — controller
- *   did:web:otakiage.etzhayyim.com:reuse              — handover broker
- *   did:web:otakiage.etzhayyim.com:ritual             — ceremony actor
- *   did:web:otakiage.etzhayyim.com:matsuri            — seasonal organizer
- *   did:web:otakiage.etzhayyim.com:item:{itemId-slug} — Item record
- *   did:web:otakiage.etzhayyim.com:certificate:{certId-slug} — Certificate
- *   did:web:otakiage.etzhayyim.com:matsuri:{matsuriId-slug}  — Matsuri event
+ *   did:web:otakiage.itonami.cloud                    — controller
+ *   did:web:otakiage.itonami.cloud:reuse              — handover broker
+ *   did:web:otakiage.itonami.cloud:ritual             — ceremony actor
+ *   did:web:otakiage.itonami.cloud:matsuri            — seasonal organizer
+ *   did:web:otakiage.itonami.cloud:item:{itemId-slug} — Item record
+ *   did:web:otakiage.itonami.cloud:certificate:{certId-slug} — Certificate
+ *   did:web:otakiage.itonami.cloud:matsuri:{matsuriId-slug}  — Matsuri event
  */
 
-export const OTAKIAGE_DID_PREFIX = "did:web:otakiage.etzhayyim.com:" as const;
+export const OTAKIAGE_DID_PREFIX = "did:web:otakiage.itonami.cloud:" as const;
 
 export type ItemMode = "reuse_only" | "ritual_only" | "reuse_then_ritual";
 
