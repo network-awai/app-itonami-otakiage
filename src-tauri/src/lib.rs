@@ -2,7 +2,7 @@
 // read-only command and no filesystem, network, shell or installer permission.
 #[tauri::command]
 fn awai_host_info() -> serde_json::Value {
-    serde_json::json!({"schema":"awai.shell.host.v1","app":"cloud.itonami.otakiage"})
+    serde_json::json!({"schema":"awai.shell.host.v1","app":"network.itonami.otakiage"})
 }
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
